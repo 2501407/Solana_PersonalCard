@@ -25,10 +25,10 @@
     "paths": {
       "@/*": [
         "./src/*"
-      ],
-      "@solana/wallet-adapter-wallets": [
-        "./node_modules/@solana/wallet-adapter-wallets/lib/types/index.d.ts"
       ]
+      // "@solana/wallet-adapter-wallets": [
+      //   "./node_modules/@solana/wallet-adapter-wallets/lib/types/index.d.ts"
+      // ]
     }
   },
   "include": [
