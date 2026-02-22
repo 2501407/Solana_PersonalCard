@@ -1,18 +1,14 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
@@ -23,12 +19,10 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
+      "@/*": ["./src/*"],
+      "@solana/wallet-adapter-wallets": [
+        "./node_modules/@solana/wallet-adapter-wallets/lib/types/index.d.ts"
       ]
-      // "@solana/wallet-adapter-wallets": [
-      //   "./node_modules/@solana/wallet-adapter-wallets/lib/types/index.d.ts"
-      // ]
     }
   },
   "include": [
@@ -38,7 +32,5 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

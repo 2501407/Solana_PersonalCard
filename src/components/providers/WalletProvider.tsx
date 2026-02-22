@@ -6,11 +6,6 @@ import {
   WalletProvider,
 } from "@solana/wallet-adapter-react";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
-import {
-  PhantomWalletAdapter,
-  SolflareWalletAdapter,
-  TorusWalletAdapter,
-} from "@solana/wallet-adapter-wallets";
 import { SOLANA_RPC_URL } from "@/lib/solana";
 
 // Import wallet adapter CSS
@@ -21,14 +16,20 @@ export function SolanaWalletProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const wallets = useMemo(
-    () => [
+  const wallets = useMemo(() => {
+    // Only import wallet adapters on the client side
+    if (typeof window === "undefined") return [];
+    
+    // Dynamic imports to avoid SSR issues
+    const { PhantomWalletAdapter, SolflareWalletAdapter, TorusWalletAdapter } = 
+      require("@solana/wallet-adapter-wallets");
+    
+    return [
       new PhantomWalletAdapter(),
       new SolflareWalletAdapter(),
       new TorusWalletAdapter(),
-    ],
-    []
-  );
+    ];
+  }, []);
 
   return (
     <ConnectionProvider endpoint={SOLANA_RPC_URL}>
